@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
 // })->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('addfriends', [FriendController::class, 'index'])->name('add.users')->middleware(['auth','verified']);
+    Route::get('addfriends', [FriendController::class, 'index'])->name('users')->middleware(['auth','verified']);
+    Route::post('addfriends', [FriendController::class, 'addFriend'])->name('add.friend');
 });
 require __DIR__ . '/auth.php';

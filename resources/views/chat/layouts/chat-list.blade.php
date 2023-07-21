@@ -21,17 +21,14 @@
 
 
     <div
-        class="w-full   mt-9 overflow-y-scroll h-auto pl-3  scrollbar:!w-1.5 scrollbar:!h-1.5 scrollbar:bg-transparent scrollbar-track:!bg-slate-100 scrollbar-thumb:!rounded scrollbar-thumb:!bg-slate-300 scrollbar-track:!rounded dark:scrollbar-track:!bg-gray-1000/[0.16] dark:scrollbar-thumb:!bg-gray-1000/50 ">
+        class="w-full   mt-9 overflow-y-scroll h-auto px-3  ">
 
-        {{-- <div class="flex-none min-w-full px-4 sm:px-6 md:px-0 overflow-hidden lg:overflow-auto scrollbar:!w-1.5 scrollbar:!h-1.5 scrollbar:bg-transparent scrollbar-track:!bg-slate-100 scrollbar-thumb:!rounded scrollbar-thumb:!bg-slate-300 scrollbar-track:!rounded dark:scrollbar-track:!bg-gray-1000/[0.16] dark:scrollbar-thumb:!bg-gray-1000/50 max-h-96 lg:supports-scrollbars:pr-2">
-            <!-- Content here -->hkkk
-          </div> --}}
 
         @php
             $count = 20;
         @endphp
         @for ($i = 0; $i < $count; $i++)
-            <x-chat-list-profile class="hover:bg-gray-100 hover:border  hover:rounded-lg px-3 py-2">
+            <x-chat-list-profile class="hover:bg-gray-200  hover:rounded-lg px-3 py-2">
             </x-chat-list-profile>
         @endfor
     </div>

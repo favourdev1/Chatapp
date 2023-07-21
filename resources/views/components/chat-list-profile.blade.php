@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'flex items-center justify-center']) }}>
+<div {{ $attributes->merge(['class' => 'flex items-center justify-center hover:cursor-pointer']) }}>
     <x-profile-head width="60"></x-profile-head>
     <div class="flex-1 ml-3">
         <div class="flex items-center justify-start">
@@ -6,7 +6,7 @@
                 <p class="font-bold text-md text-blue-700 capitalize">{{ Auth::user()->name }}</p>
             </div>
             <div>
-                <p class="text-slate-300 text-xs">2d ago</p>
+                <p class="text-slate-400 text-xs">2d ago</p>
             </div>
         </div>
         <div class="flex items-center justify-center">

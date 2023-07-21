@@ -29,7 +29,11 @@ class FriendController extends Controller
         // Pass the users and their friend status to the view
 
 
+<<<<<<< HEAD
         return view('chat.layouts.friends', compact('users', 'friendsIds'));
+=======
+        return view('chat.layouts.friends.app', compact('users', 'friendsIds'));
+>>>>>>> 87cebb6137451b12a1b3a247456ff51ed5dddbb1
     }
 
 

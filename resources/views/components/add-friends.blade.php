@@ -14,15 +14,7 @@
             <p class="text-sm text-slate-400 line-clamp-2 ">{{ $created_at }}</p>
         </div>
 
-        <div>
-            <form method="post" action="{{ route('add.friend') }}">
-                @csrf
-                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                <input type="hidden" name="friend_id" value="{{ $friend->id }}">
-                <input type="submit" value="Add Friend"
-                    class="text-sm bg-white border border-blue-500 rounded-full text-center text-blue-600 w-min px-3 cursor-pointer  py-2 hover:bg-blue-600 hover:text-white">
-            </form>
-        </div>
+        {{$slot}}
 
     </div>
 

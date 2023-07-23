@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Friends;
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -12,19 +13,26 @@ class FriendController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $users = User::All();
-        return view('chat.layouts.friends', compact('users'));
-    }
+   
+       
+        public function index()
+        {
+            // Get all users
+            $users = User::all();
+        
+            // Get the IDs of users who are friends with the authenticated user
+            $friendsIds = Friends::where('userid_1', Auth::id())
+                                ->orWhere('userid_2', Auth::id())
+                                ->pluck('userid_1', 'userid_2')
+                                ->toArray();
+        
+            // Pass the users and their friend status to the view
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
+            
+            return view('chat.layouts.friends', compact('users', 'friendsIds'));
+        }
 
-    }
+    
 
     public function addFriend(Request $request)
     {
@@ -41,12 +49,28 @@ class FriendController extends Controller
         $friend = User::find($request->input('friend_id'));
 
         if ($user && $friend) {
-            $friendship = new Friends();
-            $friendship->userid_1 = $user->id;
-            $friendship->userid_2 = $friend->id;
-            $friendship->save();
+            // Check if a friendship already exists between the two users
+            $existingFriendship = Friends::where([
+                ['userid_1', $user->id],
+                ['userid_2', $friend->id]
+            ])->orWhere([
+                        ['userid_1', $friend->id],
+                        ['userid_2', $user->id]
+                    ])->first();
 
-            return response()->json(['message' => 'Friend added successfully']);
+
+            if ($existingFriendship) {
+                // A friendship already exists
+                return response()->json(['message' => 'You are already friends with this user']);
+            } else {
+                // Create a new friendship
+                $friendship = new Friends();
+                $friendship->userid_1 = $user->id;
+                $friendship->userid_2 = $friend->id;
+                $friendship->save();
+
+                return response()->json(['message' => 'Friend added successfully']);
+            }
         } else {
             return response()->json(['message' => 'User or friend not found'], 404);
         }
@@ -54,11 +78,14 @@ class FriendController extends Controller
 
 
     /**
-     * Display the specified resource.
+     * Displys all my friends 
      */
-    public function show(string $id)
+    public function showFriends(string $id)
     {
-        //
+        $friend = Friends::where(['userid_1', Auth::id()])->orWhere(['userid_2', Auth::id()]);
+        if ($friend) {
+            return response($friend);
+        }
     }
 
     /**

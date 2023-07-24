@@ -44,10 +44,14 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('addfriends', [FriendController::class, 'index'])->name('users')->middleware(['auth','verified']);
-    Route::post('addfriends', [FriendController::class, 'addFriend'])->name('add.friend');
-});
 
+
+    Route::get('users', [FriendController::class, 'index'])->name('users');
+    Route::post('users', [FriendController::class, 'addFriend'])->name('add.friend');
+   
+    Route::delete('users', [FriendController::class, 'unfriend'])->name('unfriend');
+
+});
 
 
 

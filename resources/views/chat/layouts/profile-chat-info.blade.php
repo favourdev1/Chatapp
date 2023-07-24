@@ -1,4 +1,4 @@
-<div class="flex flex-col sm:w-full md:w-1/3 h-screen bg-gray-50 border-l-2 shadow">
+<div class="flex flex-col sm:w-full md:w-1/3 h-screen bg-gray-50 ">
     {{-- <x-title-head>
 
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
